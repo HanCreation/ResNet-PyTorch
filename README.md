@@ -20,8 +20,8 @@ CIFAR-10 is a dataset for image classification, consisting of 60,000 32x32 color
 ## Data Augmentation
 This experiment outlines a new insight for me which is the importance of data augmentation. By randomly modifying each image in training set, the model can capture the feature better and improving the accuracy.
 
-I experimented without the data augmentation ResNet50 can only achieve approximately 75%
+I experimented without the data augmentation ResNet50 can only achieve approximately 75% on the test data.
 
-Accuracy on test data: 87.92%
+I added augmentation such as random cropping, padding, horizontal flipping, and random erase to the training set and for more juice I reduced the number of ResNet blocks. But still it makes the model performed better which perfomed best at 87.92% on test data
 
-Created by Han 2024
+Coded and Created by Han 2024
