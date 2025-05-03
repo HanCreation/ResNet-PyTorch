@@ -1,3 +1,127 @@
+# ResNet PyTorch Implementation for CIFAR-10
+
+This repository contains a PyTorch implementation of ResNet architectures for image classification on the CIFAR-10 dataset.
+
+## Project Structure
+
+```
+.
+├── src/                      # Source code directory
+│   ├── data/                 # Data processing utilities
+│   ├── features/             # Feature extraction utilities
+│   ├── models/               # Model definitions
+│   │   └── ResNet/           # ResNet model implementation
+│   ├── utils/                # Utility functions for training
+│   └── visualization/        # Visualization utilities
+├── train.py                  # Training script
+├── inference.py              # Inference script
+├── config.py                 # Configuration file
+├── examples.py               # Example configurations
+└── requirements.txt          # Project dependencies
+```
+
+## Installation
+
+Clone the repository and install the dependencies:
+
+```bash
+git clone https://github.com/yourusername/ResNet-PyTorch.git
+cd ResNet-PyTorch
+pip install -r requirements.txt
+```
+
+## Configuration
+
+The project uses a centralized configuration system in `config.py` that controls all hyperparameters. You can:
+
+1. Modify default values directly in `config.py`
+2. Override values via command line arguments in `train.py` or `inference.py`
+3. Create custom configurations programmatically as shown in `examples.py`
+
+## Usage
+
+### Training
+
+Train a ResNet model on CIFAR-10:
+
+```bash
+python train.py
+```
+
+Available arguments:
+
+- `--model`: ResNet architecture (`resnet18`, `resnet34`, `resnet50`, `resnet101`, `resnet152`)
+- `--batch_size`: Batch size for training
+- `--epochs`: Number of epochs to train
+- `--lr`: Learning rate
+- `--weight_decay`: Weight decay for regularization
+- `--momentum`: Momentum for SGD optimizer
+- `--optimizer`: Optimizer to use (`sgd`, `adam`)
+- `--scheduler`: Learning rate scheduler (`cosine`, `step`, `multistep`, `none`)
+- `--data_dir`: Directory to store dataset
+- `--save_dir`: Directory to save checkpoints
+- `--num_workers`: Number of worker threads for data loading
+- `--resume`: Resume training from checkpoint
+- `--eval_only`: Only evaluate model without training
+- `--seed`: Random seed for reproducibility
+- `--use_augmentation`: Use data augmentation
+- `--use_random_erase`: Use random erasing augmentation
+
+### Inference
+
+Run inference on a single image:
+
+```bash
+python inference.py --image path/to/image.jpg
+```
+
+Arguments:
+- `--model`: ResNet architecture
+- `--checkpoint`: Path to model checkpoint (optional, will use default if not provided)
+- `--image`: Path to input image
+- `--top_k`: Number of top predictions to show (default: 3)
+
+## Results
+
+The model achieves the following performance on CIFAR-10:
+
+| Model     | Accuracy | Parameters |
+|-----------|----------|------------|
+| ResNet-18 | ~92%     | 11.2M      |
+| ResNet-34 | ~93%     | 21.3M      |
+| ResNet-50 | ~93.5%   | 23.5M      |
+
+## Examples
+
+Check out `examples.py` for different configuration examples:
+
+- Quick training with a small model
+- Full training with a large model
+- Fine-tuning from a pre-trained model
+- Evaluation only
+- Using a different data directory
+
+## ResNet Architecture
+
+[ResNet Paper](https://arxiv.org/abs/1512.03385)
+
+ResNet is special because it introduced residual connections, which allow the network to "skip" layers, making it easier to train very deep networks by avoiding the vanishing gradient problem. This architecture enables networks to be much deeper while improving performance, revolutionizing deep learning for tasks like image recognition.
+
+Skip layers (residual connections) work mathematically because they preserve the gradient flow during backpropagation. By adding the input 𝑥 directly to the output of a block:
+
+output of a block = F(𝑥) + 𝑥
+
+The addition operation ensures that the gradient flows through the network more easily, allowing the model to avoid the vanishing gradient problem.
+
+## CIFAR-10 Dataset
+
+CIFAR-10 is a dataset for image classification, consisting of 60,000 32x32 color images in 10 different classes (e.g., airplanes, cars, animals), with 6,000 images per class. The dataset is split into 50,000 training images and 10,000 test images, and is commonly used to benchmark and evaluate the performance of deep learning algorithms in computer vision.
+
+## References
+
+- [Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385) (He et al., 2015)
+- [CIFAR-10 Dataset](https://www.cs.toronto.edu/~kriz/cifar.html)
+
 # ResNet-PyTorch
  Experimenting with ResNet using PyTorch and CIFAR10 Dataset by implementing ResNet from scratch using PyTorch and add the ability to custom the architechture of the resnet blocks. This implementation is based on ResNet50, which uses BottleNeck blocks
 
